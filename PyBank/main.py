@@ -2,6 +2,7 @@
 
 
 import csv
+import os
 
 budgetfile =  "./budget-data.csv"
 
@@ -50,6 +51,9 @@ with open(budgetfile, "r") as bank_data:
         
 sum_rev_changes = sum(rev_change)
 avg_change = sum_rev_changes / (total_months - 1)
+max_change = max(rev_change)
+min_change = min(rev_change)
+
 
 print(sum(rev_change) / len(rev_change))
 print(f"Financial Analysis")
@@ -58,6 +62,15 @@ print("                                        ")
 print(f'Total Months: {total_months}')
 print(f'Total: ${net_prof}')
 print(f"Average Revenue Change: ${avg_change}")
-print(los_month)
-print (inc_month)
-#this is as far I got to meet the deadline :(
+print(f'{inc_month}({max_change})')
+print (f'{los_month}({min_change})')
+
+filepath = os.path.join("pybank_output.txt")
+with open(filepath,'w') as text:
+    text.write("Financial Analysis" + "\n")
+    text.write("----------------------------------------" + "\n")
+    text.write(f"Total Months: {total_months}" + "\n")
+    text.write(f"Total Revenue: ${net_prof}" + "\n")
+    text.write(f"Average Revenue Change: ${avg_change}" + "\n")
+    text.write(f"Greatest Increase in Revenue: {inc_month} (${max_change})" + "\n")
+    text.write(f"Greatest Decrease in Revenue: {los_month} (${min_change})" + "\n")
