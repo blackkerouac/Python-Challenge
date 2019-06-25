@@ -1,4 +1,5 @@
 import csv
+import os
 
 #Set counters
 tot_votes = 0
@@ -49,3 +50,12 @@ for i, votes in candid_votes.items():
     print(f"{i}: {candid_percent[i]} ({votes})")
 print(f"Winner: {winner}")
 
+filepath = os.path.join("pypoll_output.txt")
+with open(filepath,'w') as text:
+ 
+    text.write(f"Total Votes: {tot_votes}" + "\n")
+
+    for person, vote_count in candid_votes.items():
+        text.write(f"{i}: {candid_percent[i]} ({votes})" + "\n")
+ 
+    text.write(f"Winner: {winner}" + "\n")
